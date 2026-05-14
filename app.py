@@ -194,7 +194,7 @@ with pdf_btn_slot:
 # ── Heatmap ───────────────────────────────────────────────────────────────────
 with top_right:
     fig = create_heatmap(program)
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False, "staticPlot": True})
 
 st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
 
