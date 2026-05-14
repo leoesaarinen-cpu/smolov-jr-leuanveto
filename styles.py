@@ -2,6 +2,7 @@ CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
+    color-scheme: light;
     --bg:         #F8F9FB;
     --surface:    #FFFFFF;
     --primary:    #0A2540;
@@ -168,10 +169,24 @@ header    { visibility: hidden; }
     letter-spacing: 0.04em;
 }
 
+/* ── Force light-theme text regardless of OS dark mode ───── */
+[data-testid="stWidgetLabel"],
+[data-testid="stWidgetLabel"] p,
+[data-testid="stWidgetLabel"] label,
+label {
+    color: var(--text) !important;
+}
+
 /* ── Number input styling ────────────────────────────────── */
 [data-testid="stNumberInput"] input {
     font-size: 16px;
     font-weight: 500;
+    color: var(--primary) !important;
+    background-color: #FFFFFF !important;
+}
+
+[data-testid="stNumberInput"] {
+    background-color: transparent !important;
 }
 
 /* ── Download button ─────────────────────────────────────── */
