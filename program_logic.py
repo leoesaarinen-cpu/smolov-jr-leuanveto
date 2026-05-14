@@ -26,7 +26,9 @@ def _intensity_tier(pct: float) -> str:
 
 
 def fi_kg(value: float) -> str:
-    return f"{value:.1f}".replace(".", ",") + " kg"
+    if value % 0.5 < 0.001:
+        return f"{value:.1f}".replace(".", ",") + " kg"
+    return f"{value:.2f}".replace(".", ",") + " kg"
 
 
 def fi_pct(value: float) -> str:
@@ -40,7 +42,7 @@ def calculate_program(max_added: float, weekly_increase: float) -> List[Dict]:
         sessions = []
         for t in WEEK_1_TEMPLATE:
             adjusted_pct = t["base_pct"] + (week_num - 1) * (weekly_increase / 100)
-            weight = round(max_added * adjusted_pct * 2) / 2
+            weight = round(max_added * adjusted_pct / 1.25) * 1.25
             sessions.append({
                 "treeni": t["treeni"],
                 "sets": t["sets"],
@@ -59,7 +61,7 @@ def calculate_program(max_added: float, weekly_increase: float) -> List[Dict]:
     week4_sessions = []
     for s in WEEK_4_SESSIONS:
         if s["type"] == "deload":
-            weight = round(max_added * s["pct"] * 2) / 2
+            weight = round(max_added * s["pct"] / 1.25) * 1.25
             week4_sessions.append({
                 "treeni": s["treeni"],
                 "sets": s["sets"],
